@@ -1,4 +1,2 @@
 #!/bin/sh
-xrandr --output eDP1 --off --output DP1 --mode 3840x2160 --pos 0x0 --rotate normal --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off
-sleep 4
-feh --bg-fill --randomize ~/.wallpaper/*
+xrandr --output eDP-1 --off --output HDMI-1 --off --output DP-1 --mode 2560x1440 --rate 143.91 --pos 1920x0 --rotate normal --output HDMI-2 --off
