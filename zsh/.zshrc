@@ -23,6 +23,8 @@ ZSH_THEME="agnoster"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
+ZSH_DISABLE_COMPFIX="true"
+
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
@@ -97,3 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ll='ls -ltr'
+alias vi='vim'
+alias i3config='vim ~/.i3/config'
+alias pass='gopass'
+alias restic='restic --password-command "gopass show -o restic-backup" -r sftp:hucka@alxndr13:/opt/backup'
