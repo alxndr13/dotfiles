@@ -4,3 +4,5 @@ sleep 1
 nitrogen --set-zoom-fill /usr/share/backgrounds/sven-scheuermeier-VNseEaTt9w4-unsplash.jpg
 killall conky; start_conky_maia
 pulseaudio -k
+sleep 2
+pacmd set-default-sink 7
