@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:~/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/hucka/.oh-my-zsh"
@@ -110,3 +110,4 @@ alias hibernate='systemctl hibernate'
 alias update='yay -Syu --noconfirm'
 alias backup='/home/hucka/Dokumente/backup.sh'
 alias top='gotop'
+alias k='kubectl'
