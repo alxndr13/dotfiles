@@ -99,6 +99,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export EDITOR="vim"
+# 
 alias ll='ls -ltr'
 alias vi='vim'
 alias i3config='vim ~/.i3/config'
@@ -111,3 +114,4 @@ alias update='yay -Syu --noconfirm'
 alias backup='/home/hucka/Dokumente/backup.sh'
 alias top='gotop'
 alias k='kubectl'
+source /usr/share/nvm/init-nvm.sh
