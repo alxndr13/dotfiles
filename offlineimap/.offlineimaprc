@@ -1,0 +1,23 @@
+[general]
+accounts = Mailbox
+# Path to file with arbitrary Python code to be loaded
+pythonfile = ~/.offlineimap.py
+
+[Account Mailbox]
+localrepository = local
+remoterepository = MailboxRemote
+postsynchook = notmuch new
+
+[Repository MailboxRemote]
+type = IMAP
+remotehost = imap.mailbox.org
+remoteuser = alxndr13@mailbox.org
+remotepasseval = get_pass("mailbox")
+folderfilter = lambda folder: folder not in ['Trash', 'Junk', 'Drafts', 'Archive/2016', 'Archive/2017', 'Archive/2018']
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository local]
+type = Maildir
+localfolders = ~/mail
+restoreatime = no

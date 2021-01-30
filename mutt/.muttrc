@@ -1,0 +1,38 @@
+set realname = "Alexander Huck"
+
+alternates ^alexander.huck@mailbox.org$ ^alex@alxndr13.xyz$
+set folder="imaps://imap.mailbox.org/"
+set from="alxndr13@mailbox.org"
+
+set imap_user="alxndr13@mailbox.org"
+set imap_pass=`gopass show -o mailbox.org`
+set smtp_url=smtps://$imap_user:$imap_pass@smtp.mailbox.org
+set spoolfile="+INBOX"
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set postponed=+Drafts
+set record="+Sent"
+bind index G imap-fetch-mail
+set mail_check=10
+
+set text_flowed
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote
+set fast_reply                       # skip to compose when replying
+set askcc
+set delete
+set quit
+set charset = "utf-8"
+
+
+
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
+
+source ~/.mutt/dracula.muttrc
+auto_view text/html
+alternative_order text/plain text/html text/enriched

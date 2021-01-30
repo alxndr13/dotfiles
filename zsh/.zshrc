@@ -101,12 +101,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export EDITOR="vim"
+export ANDROID_HOME="/home/hucka/Android/Sdk"
+export ANDROID_SDK_ROOT="/home/hucka/Android/Sdk"
 # 
 alias ll='ls -ltr'
 alias vi='vim'
 alias i3config='vim ~/.i3/config'
 alias pass='gopass'
-alias restic='restic --password-command "gopass show -o restic-backup" -r sftp:hucka@hetzner:/opt/backup'
+#alias restic='restic --password-command "gopass show -o restic-backup" -r sftp:hucka@hetzner:/opt/backup'
+alias restic='restic --password-command "gopass show -o restic-backup"'
 alias cat='bat -pp'
 alias susp='systemctl suspend'
 alias hibernate='systemctl hibernate'
@@ -115,3 +118,4 @@ alias backup='/home/hucka/Dokumente/backup.sh'
 alias top='gotop'
 alias k='kubectl'
 source /usr/share/nvm/init-nvm.sh
+
