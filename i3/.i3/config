@@ -291,16 +291,16 @@ bindym Super_L exec --no-startup-id blurlock
 
 # Autostart applications
 exec_always --no-startup-id $HOME/.launch-polybar.sh
+exec_always --no-startup-id autorandr -c 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id fluxgui
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id blueman-applet
+exec --no-startup-id blueberry
 exec --no-startup-id solaar
 exec --no-startup-id flameshot
 exec --no-startup-id setxkbmap de nodeadkeys
@@ -439,3 +439,4 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+d
