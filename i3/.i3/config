@@ -300,8 +300,8 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id blueberry
-exec --no-startup-id solaar
+exec --no-startup-id blueberry-tray
+exec --no-startup-id solaar -w hide
 exec --no-startup-id flameshot
 exec --no-startup-id setxkbmap de nodeadkeys
 exec_always --no-startup-id ff-theme-util

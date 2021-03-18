@@ -110,5 +110,9 @@ alias note='vim ~/notes.txt'
 alias td="todo.sh"
 alias pass='gopass'
 alias vi='nvim'
+alias xclip='xclip -selection clipboard'
+alias backup='~/Dokumente/backup.sh'
+alias wgup='sudo systemctl start wg-quick@client'
+alias wgdown='sudo systemctl down wg-quick@client'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
