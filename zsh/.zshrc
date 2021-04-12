@@ -114,5 +114,7 @@ alias xclip='xclip -selection clipboard'
 alias backup='~/Dokumente/backup.sh'
 alias wgup='sudo systemctl start wg-quick@client'
 alias wgdown='sudo systemctl down wg-quick@client'
+alias hidrive='sshfs hucka@sftp.hidrive.strato.com:/users/hucka/ /home/hucka/hidrive_mount'
+alias uhidrive='umount /home/hucka/hidrive_mount'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
