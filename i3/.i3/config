@@ -304,6 +304,8 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id solaar -w hide
 exec --no-startup-id flameshot
 exec --no-startup-id setxkbmap de nodeadkeys
+exec --no-startup-id mictray
+exec --no-startup-id pasystray
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
