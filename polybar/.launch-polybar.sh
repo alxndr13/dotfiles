@@ -6,11 +6,11 @@
 
   while pgrep -u $UID -x polybar > /dev/null; do sleep 0.5; done
 
-  outputs=$(xrandr --query | grep " connected" | cut -d" " -f1)
+  outputs=$(xrandr --query | egrep  " connected (primary )?[0-9]{4}" | cut -d" " -f1)
   tray_output=eDP
 
   for m in $outputs; do
-    if [[ $m == "DisplayPort-2" ]]; then
+    if [[ $m == "DisplayPort-2" || $m == "DisplayPort-3" ]]; then
         tray_output=$m
     fi
   done
