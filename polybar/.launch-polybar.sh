@@ -10,7 +10,7 @@
   tray_output=eDP
 
   for m in $outputs; do
-    if [[ $m == "DisplayPort-2" || $m == "DisplayPort-3" ]]; then
+    if [[ $m == "DisplayPort-2" || $m == "DisplayPort-1" ]]; then
         tray_output=$m
     fi
   done
