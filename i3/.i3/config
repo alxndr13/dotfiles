@@ -252,10 +252,9 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Shift+ssharp mode "$mode_vpn"
-set $mode_vpn (i)novex VPN Toggle, (b)MW VPN Toggle
+set $mode_vpn w(i)reguard vpn
 mode "$mode_vpn" {
-    bindsym i exec --no-startup-id ~/.toggle-vpn.sh "Inovex VPN", mode "default"
-    bindsym b exec --no-startup-id ~/.toggle-vpn.sh "BMW pfSense", mode "default"
+    bindsym i exec --no-startup-id ~/.toggle-vpn.sh "client", mode "default"
     # exit vpn mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"

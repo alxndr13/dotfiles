@@ -7,13 +7,13 @@ then
     exit 1
 fi
 
-ACTIVE=$(nmcli con show --active | grep "$VPN")
+sudo systemctl status wg-quick@${VPN} 1>/dev/null
 
-if [ -z "$ACTIVE" ]
+if [[ $? -eq 0 ]]
 then
-    echo "disabled"
+    echo ""
 else
-    echo "enabled"
+    echo ""
 fi
 
 exit 0
