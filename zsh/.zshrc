@@ -101,7 +101,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR="vim"
 # 
 alias ll='ls -ltr'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 alias k='kubectl'
 alias kx='kubectx'
 alias kns='kubens'

@@ -56,8 +56,9 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec chromium
-bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F4 exec evolution
+bindsym $mod+F3 exec nautilus
+bindsym $mod+Shift+t exec brave https://todoist.com/app/today
+
 
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
@@ -143,7 +144,7 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1
+set $ws1 1 
 set $ws2 2
 set $ws3 3
 set $ws4 4
@@ -151,6 +152,8 @@ set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
+
+workspace $ws1 output DisplayPort-1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -292,12 +295,11 @@ bindym Super_L exec --no-startup-id blurlock
 exec_always --no-startup-id $HOME/.launch-polybar.sh
 exec_always --no-startup-id autorandr -c 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id blueberry-tray
 exec --no-startup-id solaar -w hide
