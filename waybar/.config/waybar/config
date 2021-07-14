@@ -1,0 +1,67 @@
+{
+    "layer": "bottom",
+    "margin": "0px",
+    "height": 28,
+    "position": "bottom",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["idle_inhibitor"],
+    "modules-right": ["cpu", "memory","disk", "network", "temperature", "custom/vpn", "battery", "clock", "tray"],
+    "cpu": {
+        "interval": 10,
+        "format": "{usage}% ",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 30,
+        "format": "{}% ",
+        "max-length": 10
+    },
+    "disk": {
+        "interval": 30,
+        "format": "Only {percentage_free}% remaining on {path}",
+        "path": "/"
+    },
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr} ",
+        "format-disconnected": "", //An empty format will hide the module.
+        "tooltip-format": "{ifname}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
+    },
+    "custom/vpn": {
+        "exec": "$HOME/.vpn-state.sh 'Inovex VPN'",
+        "on-click": "$HOME/.toggle-vpn.sh 'Inovex VPN'",
+        "format": "inovex {}",
+        "interval": 30,
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "temperature": {
+        "format": "{temperatureC}°C ",
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input"
+    },
+    "sway/window": {
+        "max-length": 50
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}
+

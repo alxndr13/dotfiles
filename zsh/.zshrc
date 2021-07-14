@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="/home/hucka/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +75,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git wd vscode sudo zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git wd vscode sudo zsh-autosuggestions zsh-syntax-highlighting shrink-path)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,7 +118,6 @@ alias note='vim ~/notes.txt'
 alias td="todo.sh"
 alias pass='gopass'
 alias vi='nvim'
-alias xclip='xclip -selection clipboard'
 alias backup='~/Dokumente/backup.sh'
 alias wgup='sudo systemctl start wg-quick@client'
 alias wgdown='sudo systemctl down wg-quick@client'
@@ -119,3 +125,8 @@ alias hidrive='sshfs hucka@sftp.hidrive.strato.com:/users/hucka/ /home/hucka/hid
 alias uhidrive='umount /home/hucka/hidrive_mount'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+__git_files () {
+    _wanted files expl 'local files' _files
+}
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
