@@ -5,7 +5,7 @@
     "position": "bottom",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["idle_inhibitor"],
-    "modules-right": ["cpu", "memory","disk", "network", "temperature", "custom/vpn", "battery", "clock", "tray"],
+    "modules-right": ["cpu", "memory","disk", "network", "temperature", "pulseaudio", "custom/vpn", "battery", "clock", "tray"],
     "cpu": {
         "interval": 10,
         "format": "{usage}% ",
@@ -18,14 +18,14 @@
     },
     "disk": {
         "interval": 30,
-        "format": "Only {percentage_free}% remaining on {path}",
+        "format": "{percentage_free}% ",
         "path": "/"
     },
     "network": {
         "format": "{ifname}",
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr} ",
-        "format-disconnected": "", //An empty format will hide the module.
+        "format-disconnected": "",
         "tooltip-format": "{ifname}",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} ",
@@ -33,10 +33,10 @@
         "max-length": 50
     },
     "custom/vpn": {
-        "exec": "$HOME/.vpn-state.sh 'Inovex VPN'",
-        "on-click": "$HOME/.toggle-vpn.sh 'Inovex VPN'",
-        "format": "inovex {}",
-        "interval": 30,
+        "exec": "$HOME/.vpn-state.sh client",
+        "on-click": "$HOME/.toggle-vpn.sh client",
+        "format": "wireguard {}",
+        "interval": 30
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -62,6 +62,23 @@
     "tray": {
         "icon-size": 21,
         "spacing": 10
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 2,
+        "on-click": "pavucontrol"
     }
+
 }
 

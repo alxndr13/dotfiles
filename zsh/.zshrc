@@ -123,6 +123,8 @@ alias wgup='sudo systemctl start wg-quick@client'
 alias wgdown='sudo systemctl down wg-quick@client'
 alias hidrive='sshfs hucka@sftp.hidrive.strato.com:/users/hucka/ /home/hucka/hidrive_mount'
 alias uhidrive='umount /home/hucka/hidrive_mount'
+# https://unix.stackexchange.com/a/148548
+alias sudo='sudo '
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __git_files () {

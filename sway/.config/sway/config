@@ -6,7 +6,9 @@ input * {
 
 output "*" bg /usr/share/backgrounds/xgeaid4lzd371.png fill
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec --no-startup-id systemctl --user restart xdg-desktop-portal
+
 
 # Sleep timer
 exec swayidle -w \
@@ -47,7 +49,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id "wofi --show drun -m"
+bindsym $mod+d exec --no-startup-id "wofi --show drun"
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -238,35 +240,8 @@ for_window [urgent=latest] focus
 
 bindsym $mod+Shift+c reload
 
-# exit i3 (logs you out of your X session)
+# exit sway
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
-
-# Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id swaylock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+Shift+ssharp mode "$mode_vpn"
-set $mode_vpn (i)novex VPN Toggle, (b)MW VPN Toggle
-mode "$mode_vpn" {
-    bindsym i exec --no-startup-id ~/.toggle-vpn.sh "Inovex VPN", mode "default"
-    bindsym b exec --no-startup-id ~/.toggle-vpn.sh "BMW pfSense", mode "default"
-    # exit vpn mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -292,32 +267,15 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Lock screen
-bindsym $mod+9 exec --no-startup-id swaylock
-
 # Toggle Mic and Cam
 bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/mic-toggle.sh
 bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/cam-toggle.sh
 
-
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id fluxgui
-exec --no-startup-id pamac-tray
-exec --no-startup-id blueberry-tray
 exec --no-startup-id solaar
-exec --no-startup-id killall mictray; mictray
-exec --no-startup-id pasystray
-exec --no-startup-id sleep 5; autorandr -c
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id sudo ip link set enp2s0f0 down
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
 
 bindsym $mod+Shift+s exec grimshot copy area
 
@@ -332,7 +290,7 @@ bindsym $mod+Shift+s exec grimshot copy area
   client.background       #2B2C2B
 
 #############################
-### settings for i3-gaps: ###
+### settings for gaps: ###
 #############################
 
 # Set inner/outer gaps
@@ -350,6 +308,16 @@ smart_gaps on
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
+
+set $mode_shutdown Shutdown Mode: (s) suspend, (h) hibernate, (p) poweroff
+bindsym $mod+Shift+i mode "$mode_shutdown"
+mode "$mode_shutdown" {
+    bindsym s exec systemctl suspend
+    bindsym h exec systemctl hibernate
+    bindsym p exec poweroff
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
