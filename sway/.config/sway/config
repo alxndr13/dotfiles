@@ -255,7 +255,7 @@ bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut.
 set $mode_vpn (i) wireguard
 bindsym $mod+Shift+ssharp mode "$mode_vpn"
 mode "$mode_vpn" {
-    bindsym i exec --no-startup-id ~/.toggle-vpn.sh "client", mode "default"
+    bindsym i exec --no-startup-id ~/.local/bin/toggle-vpn.sh "client", mode "default"
     # exit vpn mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
