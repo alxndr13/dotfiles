@@ -9,6 +9,11 @@ output "*" bg /usr/share/backgrounds/xgeaid4lzd371.png fill
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec --no-startup-id systemctl --user restart xdg-desktop-portal
 
+exec kanshi &
+
+
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Sleep timer
 exec swayidle -w \
@@ -19,8 +24,8 @@ exec swayidle -w \
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
+# Reload sway
+bindsym --to-code $mod+Shift+c reload
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
@@ -63,12 +68,16 @@ bindsym $mod+Ctrl+m exec pavucontrol
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "sudo light -A 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "sudo light -U 10; notify-send 'brightness down'"
+
+# MicToggle
+bindsym XF86AudioMicMute exec "~/.local/bin/mic-toggle.sh"
+
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec chromium
+bindsym $mod+F2 exec brave
 bindsym $mod+F3 exec nautilus
 bindsym $mod+Shift+t exec brave https://todoist.com/app/today
 
@@ -162,7 +171,7 @@ set $ws6 6
 set $ws7 7
 set $ws8 8
 
-workspace $ws1 output DisplayPort-1
+workspace $ws1 output DP-2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -231,7 +240,7 @@ for_window [class="Xfburn"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 
 # Solaar Window Settings
-for_window [class="Solaar"] floating enable border normal 
+for_window [class="Solaar"] floating enable border normal
 for_window [class="Solaar"] resize set 640 480
 for_window [class="Solaar"] move position center
 
@@ -242,6 +251,15 @@ bindsym $mod+Shift+c reload
 
 # exit sway
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
+
+bindsym $mod+Shift+ssharp mode "$mode_vpn"
+set $mode_vpn (i) wireguard,
+mode "$mode_vpn" {
+    bindsym i exec --no-startup-id ~/.toggle-vpn.sh "client", mode "default"
+    # exit vpn mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -267,9 +285,13 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+# Lock screen
+bindsym $mod+9 exec --no-startup-id swaylock
+
 # Toggle Mic and Cam
 bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/mic-toggle.sh
 bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/cam-toggle.sh
+
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -289,10 +311,6 @@ bindsym $mod+Shift+s exec grimshot copy area
 
   client.background       #2B2C2B
 
-#############################
-### settings for gaps: ###
-#############################
-
 # Set inner/outer gaps
 gaps inner 14
 gaps outer -2
@@ -309,12 +327,13 @@ smart_gaps on
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
-set $mode_shutdown Shutdown Mode: (s) suspend, (h) hibernate, (p) poweroff
+set $mode_shutdown Shutdown Mode: (s) suspend, (h) hibernate, (p) poweroff, (e) exit
 bindsym $mod+Shift+i mode "$mode_shutdown"
 mode "$mode_shutdown" {
-    bindsym s exec systemctl suspend
-    bindsym h exec systemctl hibernate
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym h exec systemctl hibernate, mode "default"
     bindsym p exec poweroff
+    bindsym e exec swaymsg exit, mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
