@@ -58,6 +58,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " Show tabs and trailing whitespace
 set list listchars=tab:»\ ,trail:·
 
+# save last line
 autocmd BufReadPost *
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
       \ |   exe "normal! g`\""
