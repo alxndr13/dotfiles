@@ -252,8 +252,8 @@ bindsym $mod+Shift+c reload
 # exit sway
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
 
+set $mode_vpn (i) wireguard
 bindsym $mod+Shift+ssharp mode "$mode_vpn"
-set $mode_vpn (i) wireguard,
 mode "$mode_vpn" {
     bindsym i exec --no-startup-id ~/.toggle-vpn.sh "client", mode "default"
     # exit vpn mode: "Enter" or "Escape"
