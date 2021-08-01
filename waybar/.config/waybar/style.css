@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-    background: transparent;
+    background: #4C566A;
     color: white;
 }
 
@@ -22,26 +22,26 @@ window#waybar {
 */
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 1px;
     background: transparent;
     color: white;
     border-top: 2px solid transparent;
 }
 
 #workspaces button.focused {
-    color: #33bb5e;
-    border-top: 2px solid #33bb5e;
+    color: #88C0D0;
+    border-top: 2px solid #88C0D0;
 }
 
 #mode {
     background: transparent;
-    border-bottom: 2px solid white;
+    border-top: 2px solid white;
     padding: 0 5px;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom.vpn, #temperature {
-    padding: 0 3px;
-    margin: 0 15px;
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-vpn, #temperature, #disk {
+    padding: 0 5px;
+    margin: 0 10px;
 }
 
 #clock {
@@ -51,11 +51,16 @@ window#waybar {
 #battery {
 }
 
-#battery icon {
-    color: red;
+#battery.charging {
+    color: #A3BE8C;
 }
 
-#battery.charging {
+#battery.discharging {
+    color: #D08770;
+}
+
+#battery.discharging.critical {
+    color: #BF616A;
 }
 
 @keyframes blink {

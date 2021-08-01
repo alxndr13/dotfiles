@@ -54,7 +54,11 @@
     },
     "battery": {
         "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "interval": 10,
+        "states": {
+            "critical": 20
+        },
     },
     "clock": {
         "format-alt": "{:%a, %d. %b  %H:%M}"

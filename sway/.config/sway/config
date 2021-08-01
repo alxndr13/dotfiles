@@ -286,7 +286,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id swaylock
+bindsym $mod+9 exec --no-startup-id exec ~/.local/bin/lock.sh
 
 # Toggle Mic and Cam
 bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/mic-toggle.sh
@@ -296,7 +296,7 @@ bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/cam-toggle.sh
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id solaar
+exec solaar -w hide
 exec_always --no-startup-id sudo ip link set enp2s0f0 down
 
 bindsym $mod+Shift+s exec grimshot copy area
@@ -307,7 +307,7 @@ bindsym $mod+Shift+s exec grimshot copy area
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+  client.placeholder      #000000 #0c0c0c #ffffff #000000
 
   client.background       #2B2C2B
 
@@ -323,7 +323,7 @@ gaps outer -2
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
