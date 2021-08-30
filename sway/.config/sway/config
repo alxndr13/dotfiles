@@ -11,6 +11,13 @@ exec --no-startup-id systemctl --user restart xdg-desktop-portal
 
 exec kanshi &
 
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Nordic'
+    gsettings set $gnome-schema icon-theme 'Numix'
+    gsettings set $gnome-schema cursor-theme 'Breeze'
+}
 
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
