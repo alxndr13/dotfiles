@@ -125,6 +125,7 @@ alias hidrive='sshfs hucka@sftp.hidrive.strato.com:/users/hucka/ /home/hucka/hid
 alias uhidrive='umount /home/hucka/hidrive_mount'
 # https://unix.stackexchange.com/a/148548
 alias sudo='sudo '
+alias podman='pd'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __git_files () {
