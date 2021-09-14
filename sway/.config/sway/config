@@ -16,7 +16,7 @@ set $gnome-schema org.gnome.desktop.interface
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Nordic'
     gsettings set $gnome-schema icon-theme 'Numix'
-    gsettings set $gnome-schema cursor-theme 'Breeze'
+    gsettings set $gnome-schema cursor-theme 'Vimix Cursors'
 }
 
 
@@ -84,9 +84,9 @@ bindsym XF86AudioMicMute exec "~/.local/bin/mic-toggle.sh"
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec brave
+bindsym $mod+F2 exec chromium
 bindsym $mod+F3 exec nautilus
-bindsym $mod+Shift+t exec brave https://todoist.com/app/today
+bindsym $mod+Shift+t exec chromium https://todoist.com/app/today
 
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
