@@ -3,7 +3,7 @@
     "height": 30,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["idle_inhibitor"],
-    "modules-right": ["custom/vpn", "network", "pulseaudio", "battery"    , "temperature", "clock"],
+    "modules-right": ["custom/bt", "custom/vpn", "network", "pulseaudio", "battery", "temperature", "clock"],
     // Modules configuration
 	"sway/workspaces": {
 		"disable-scroll": true,
@@ -78,5 +78,11 @@
         "on-click": "$HOME/.local/bin/toggle-vpn.sh 'client'",
         "format": " {} wireguard",
         "interval": 30
+    },
+    "custom/bt": {
+        "exec": "$HOME/.local/bin/bt-state.sh",
+        "on-click": "$HOME/.local/bin/bt-state.sh",
+        "format": " {}",
+        "interval": 10
     },
 }
