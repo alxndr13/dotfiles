@@ -106,8 +106,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export EDITOR="vim"
-# 
-alias ll='ls -ltr'
+
+# Aliases
+alias ll='ls -lh'
 alias vi='nvim'
 alias vim='nvim'
 alias k='kubectl'
@@ -125,7 +126,12 @@ alias hidrive='sshfs hucka@sftp.hidrive.strato.com:/users/hucka/ /home/hucka/hid
 alias uhidrive='umount /home/hucka/hidrive_mount'
 # https://unix.stackexchange.com/a/148548
 alias sudo='sudo '
-alias podman='pd'
+alias pd='podman'
+alias tf='terraform'
+alias lz='lazygit'
+alias bton='bluetoothctl power on'
+alias btoff='bluetoothctl power off'
+alias btbose='bluetoothctl connect 60:AB:D2:41:CD:11'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __git_files () {
