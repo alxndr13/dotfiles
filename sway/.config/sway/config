@@ -7,7 +7,6 @@ input * {
 output "*" bg /usr/share/backgrounds/xgeaid4lzd371.png fill
 
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec --no-startup-id systemctl --user restart xdg-desktop-portal
 
 exec kanshi &
 
@@ -19,8 +18,6 @@ exec_always {
     gsettings set $gnome-schema cursor-theme 'Vimix Cursors'
 }
 
-
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Sleep timer
 exec swayidle -w \
