@@ -9,9 +9,68 @@ Plug('tpope/vim-fugitive')
 Plug('vim-airline/vim-airline')
 Plug('arcticicestudio/nord-vim')
 Plug 'preservim/nerdtree'
-
+Plug 'ellisonleao/glow.nvim'
+Plug 'plasticboy/vim-markdown'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
+
+# plasticboy/vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+
+lua <<EOF
+  lspconfig = require "lspconfig"
+  lspconfig.gopls.setup {
+    cmd = {"gopls", "serve"},
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  }
+EOF
+
+
+lua <<EOF
+  -- …
+
+  function goimports(timeout_ms)
+    local context = { only = { "source.organizeImports" } }
+    vim.validate { context = { context, "t", true } }
+
+    local params = vim.lsp.util.make_range_params()
+    params.context = context
+
+    -- See the implementation of the textDocument/codeAction callback
+    -- (lua/vim/lsp/handler.lua) for how to do this properly.
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+    if not result or next(result) == nil then return end
+    local actions = result[1].result
+    if not actions then return end
+    local action = actions[1]
+
+    -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
+    -- is a CodeAction, it can have either an edit, a command or both. Edits
+    -- should be executed first.
+    if action.edit or type(action.command) == "table" then
+      if action.edit then
+        vim.lsp.util.apply_workspace_edit(action.edit)
+      end
+      if type(action.command) == "table" then
+        vim.lsp.buf.execute_command(action.command)
+      end
+    else
+      vim.lsp.buf.execute_command(action)
+    end
+  end
+EOF
+
+autocmd BufWritePre *.go lua goimports(1000)
 
 
 " Nord Theme
@@ -20,6 +79,9 @@ let g:nord_underline = 1
 let g:nord_italic_comments = 1
 let g:nord_italic = 1
 
+lua << EOF
+require'lspconfig'.gopls.setup{}
+EOF
 
 "NERDTree
 " Exit Vim if NERDTree is the only window remaining in the only tab.
