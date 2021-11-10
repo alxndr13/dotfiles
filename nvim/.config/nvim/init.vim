@@ -2,13 +2,13 @@ let mapleader = " " " map leader to Space
 
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug('junegunn/fzf.vim')
-Plug('bronson/vim-trailing-whitespace')
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'bronson/vim-trailing-whitespace'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug('tpope/vim-fugitive')
-Plug('vim-airline/vim-airline')
-Plug('arcticicestudio/nord-vim')
-Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'arcticicestudio/nord-vim'
 Plug 'ellisonleao/glow.nvim'
 Plug 'plasticboy/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode'
@@ -16,62 +16,24 @@ Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
-# plasticboy/vim-markdown
+" Markdown settings
+" Disable folding
 let g:vim_markdown_folding_disabled = 1
 
+" Glow Preview in markdown
+nnoremap <leader>p :Glow<CR>
 
-lua <<EOF
-  lspconfig = require "lspconfig"
-  lspconfig.gopls.setup {
-    cmd = {"gopls", "serve"},
-    settings = {
-      gopls = {
-        analyses = {
-          unusedparams = true,
-        },
-        staticcheck = true,
-      },
-    },
-  }
-EOF
+" Autoclosing brackets
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
-
-lua <<EOF
-  -- …
-
-  function goimports(timeout_ms)
-    local context = { only = { "source.organizeImports" } }
-    vim.validate { context = { context, "t", true } }
-
-    local params = vim.lsp.util.make_range_params()
-    params.context = context
-
-    -- See the implementation of the textDocument/codeAction callback
-    -- (lua/vim/lsp/handler.lua) for how to do this properly.
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    if not result or next(result) == nil then return end
-    local actions = result[1].result
-    if not actions then return end
-    local action = actions[1]
-
-    -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-    -- is a CodeAction, it can have either an edit, a command or both. Edits
-    -- should be executed first.
-    if action.edit or type(action.command) == "table" then
-      if action.edit then
-        vim.lsp.util.apply_workspace_edit(action.edit)
-      end
-      if type(action.command) == "table" then
-        vim.lsp.buf.execute_command(action.command)
-      end
-    else
-      vim.lsp.buf.execute_command(action)
-    end
-  end
-EOF
-
-autocmd BufWritePre *.go lua goimports(1000)
-
+" Loading lsp config
+source ~/.config/nvim/lsp.vim
 
 " Nord Theme
 colorscheme nord
@@ -79,24 +41,10 @@ let g:nord_underline = 1
 let g:nord_italic_comments = 1
 let g:nord_italic = 1
 
-lua << EOF
-require'lspconfig'.gopls.setup{}
-EOF
-
-"NERDTree
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-
-
-nmap <leader>gj :diffget //3<CR>
-nmap <leader>gf :diffget //2<CR>
-nmap <leader>gs :G<CR>
-nmap <leader>gp :Git push<CR>
-nmap <leader>gc :Git commit<CR>
-nmap <C-f> :Files<CR>
-nmap <C-h> :History<CR>
+" Telescope setup
+nnoremap <C-t> <cmd>Telescope file_browser<cr>
+nnoremap <C-f> <cmd>Telescope find_files<cr>
+nnoremap <C-h> <cmd>Telescope oldfiles<cr>
 
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
@@ -110,13 +58,12 @@ set shiftwidth=2            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set relativenumber          " add relative line numbers
 set wildmode=longest,list   " get bash-like tab completions
-set cc=120                   " set an 80 column border for good coding style
+set cc=120                   " set an 120 column border for good coding style
 set hidden
 " Give more space for displaying messages.
 set cmdheight=2
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
-
 
 " coc.vim config
 inoremap <silent><expr> <TAB>
