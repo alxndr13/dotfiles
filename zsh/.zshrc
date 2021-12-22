@@ -133,6 +133,8 @@ alias lz='lazygit'
 alias bton='bluetoothctl power on'
 alias btoff='bluetoothctl power off'
 alias btbose='bluetoothctl connect 60:AB:D2:41:CD:11'
+alias n='nnn'
+alias kt='kitty --detach'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __git_files () {
