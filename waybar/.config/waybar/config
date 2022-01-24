@@ -35,7 +35,7 @@
         	"format-charging": "{icon} {capacity}% {time}",
         	"format-plugged": "{icon} {capacity}%",
         	"format-alt": "{capacity}%",
-        	"format-full": "{capacity}%",
+        	"format-full": "{icon} full at {capacity}%",
 	},
 	"network": {
         	"format-wifi": "  {essid}",
