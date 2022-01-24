@@ -109,7 +109,7 @@ export EDITOR="vim"
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # Aliases
-alias ll='ls -lh'
+alias ll='exa -l'
 alias vi='nvim'
 alias vim='nvim'
 alias k='kubectl'
