@@ -1,8 +1,8 @@
 set realname = "Alexander Huck"
 
-alternates ^alexander.huck@mailbox.org$ ^alex@alxndr13.xyz$
+alternates ^alxndr13@mailbox.org$ ^alex@alxndr13.xyz$
 set folder="imaps://imap.mailbox.org/"
-set from="alxndr13@mailbox.org"
+set from="alexander.huck@mailbox.org"
 
 set imap_user="alxndr13@mailbox.org"
 set imap_pass=`gopass show -o mailbox.org`
@@ -23,7 +23,7 @@ set forward_quote
 set fast_reply                       # skip to compose when replying
 set askcc
 set delete
-set quit
+#set quit
 set charset = "utf-8"
 
 
@@ -32,6 +32,10 @@ macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract U
 
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 
+# Use abook with Mutt
+set query_command="abook --mutt-query '%s'"
+macro index a     "|abook --add-email\n" 'add sender to abook'
+macro pager a     "|abook --add-email\n" 'add sender to abook'
 
 source ~/.mutt/dracula.muttrc
 auto_view text/html
