@@ -8,8 +8,8 @@ output "*" bg /usr/share/backgrounds/maico-amorim-SJWPKMb9u-k-unsplash.jpg fill
 
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-exec kanshi &
-
+exec_always "pkill kanshi; kanshi &"
+exec_always flameshot
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
@@ -303,7 +303,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec solaar -w hide
 exec_always --no-startup-id sudo ip link set enp2s0f0 down
 
-bindsym $mod+Shift+s exec grimshot copy area
+bindsym $mod+Shift+s exec flameshot gui
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
