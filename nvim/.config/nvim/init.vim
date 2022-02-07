@@ -151,6 +151,8 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+"Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Autoimport golang packages
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
