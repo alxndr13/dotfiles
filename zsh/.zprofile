@@ -5,6 +5,6 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export BROWSER=/usr/bin/chromium
 export WLR_NO_HARDWARE_CURSORS=1
 export QT_QPA_PLATFORM=wayland
-export GOPATH="/home/ahuck/go/"
-export PATH="/home/ahuck/.local/bin/:$PATH"
+export GOPATH="/home/hucka/go/"
+export PATH="/home/hucka/.local/bin/:$PATH"
 sway
