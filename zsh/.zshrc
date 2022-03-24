@@ -110,8 +110,8 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 # Aliases
 alias ll='exa -l'
-alias vi='nvim'
-alias vim='nvim'
+alias vi='lvim'
+alias vim='lvim'
 alias k='kubectl'
 alias kx='kubectx'
 alias kns='kubens'
@@ -119,7 +119,6 @@ alias cat='bat -pp'
 alias note='vim ~/notes.txt'
 alias td="todo.sh"
 alias pass='gopass'
-alias vi='nvim'
 alias backup='~/Dokumente/backup.sh'
 alias wgup='sudo systemctl start wg-quick@client'
 alias wgdown='sudo systemctl down wg-quick@client'

@@ -22,8 +22,8 @@
              		"10": "X" }
      },
 	"clock": {
-		"format": "{:%H:%M} ",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format": "{:%d.%m %H:%M} ",
+        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
 	},
 	"battery": {
         	"states": {
