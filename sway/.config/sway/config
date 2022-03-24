@@ -4,7 +4,7 @@ input * {
     xkb_options "grp:win_space_toggle"
 }
 
-output "*" bg /usr/share/backgrounds/maico-amorim-SJWPKMb9u-k-unsplash.jpg fill
+output "*" bg ~/.wallpaper/wallpaperflare.com_wallpaper.jpg fill
 
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
