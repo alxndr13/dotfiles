@@ -132,6 +132,7 @@ alias lz='lazygit'
 alias bton='bluetoothctl power on'
 alias btoff='bluetoothctl power off'
 alias btbose='bluetoothctl connect 60:AB:D2:41:CD:11'
+alias btk6='bluetoothctl connect DC:2C:26:2A:3E:00'
 alias n='nnn'
 alias kt='kitty --detach'
 
