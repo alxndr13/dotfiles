@@ -3,3 +3,5 @@
 	name = Alexander Huck
 [alias]
 	p = push
+[merge]
+	conflictstyle = diff3
