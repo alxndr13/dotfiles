@@ -10,7 +10,7 @@ exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLA
 
 exec_always "pkill kanshi; kanshi &"
 exec_always flameshot
-exec_always sleep 10; gammastep -m wayland -l 49.48:8.46
+exec_always pkill gammastep; sleep 10; gammastep -m wayland -c ~/.config/gammastep/config.ini &
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
@@ -243,6 +243,9 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [class="Gnome-calculator"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 # Solaar Window Settings
 for_window [class="Solaar"] floating enable border normal
