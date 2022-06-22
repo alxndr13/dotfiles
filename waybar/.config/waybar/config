@@ -30,16 +30,16 @@
             		"warning": 30,
             		"critical": 15,
         	},
-            "format": "{icon} {capacity}%",
+            "format": "<span font='20' rise='-3000'>{icon}</span> {capacity}%",
             "format-icons": ["", "", "", "", ""],
-        	"format-charging": "{icon} {capacity}% {time}",
-        	"format-plugged": "{icon} {capacity}%",
+        	"format-charging": "<span font='20' rise='-3000'>{icon}</span> {capacity}% {time}",
+        	"format-plugged": "<span font='20' rise='-3000'>{icon}</span> {capacity}%",
         	"format-alt": "{capacity}%",
-        	"format-full": "{icon} full at {capacity}%",
+        	"format-full": "<span font='20' rise='-3000'>{icon}</span> full at {capacity}%",
 	},
 	"network": {
-        	"format-wifi": "  {essid}",
-        	"format-ethernet": "  {ipaddr}",
+        	"format-wifi": "<span font='20' rise='-3000'></span> {essid}",
+        	"format-ethernet": "<span font='20' rise='-3000'></span>   {ipaddr}",
         	"format-linked": "{ifname} (No IP) ",
             "format-disconnected": "  Disconnected",
             "tooltip-format-wifi": "Signal Strength: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
@@ -50,7 +50,7 @@
         "scroll-step": 5.0,
         "format-source": "Mic ON",
         "format-source-muted": "Mic OFF",
-		"format": "{icon}  {volume}%",
+		    "format": "<span font='20' rise='-3000'>{icon}</span>  {volume}%",
         	"format-muted": "󰖁 Muted",
         	"format-icons": {
             	"headphone": "",
@@ -76,7 +76,7 @@
     "custom/vpn": {
         "exec": "$HOME/.local/bin/vpn-state.sh 'client'",
         "on-click": "$HOME/.local/bin/toggle-vpn.sh 'client'",
-        "format": " {} wireguard",
+        "format": "<span font='20' rise='-3000'> {}</span> wireguard",
         "interval": 30
     },
     "custom/bt": {
