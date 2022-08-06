@@ -110,8 +110,8 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 # Aliases
 alias ll='exa -l'
-alias vi='lvim'
-alias vim='lvim'
+alias vi='nvim'
+alias vim='nvim'
 alias k='kubectl'
 alias kx='kubectx'
 alias kns='kubens'
