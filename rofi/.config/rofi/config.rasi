@@ -1,5 +1,0 @@
-configuration {
-	show-icons: false;
-	icon-theme: "Papirus";
-	theme: "/usr/share/rofi/themes/nord.rasi";
-}
