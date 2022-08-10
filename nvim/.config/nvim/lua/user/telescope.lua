@@ -9,10 +9,15 @@ telescope.setup {
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
     path_display = { shorten = 5 },
-    file_ignore_patterns = { ".git/", "node_modules" },
+    file_ignore_patterns = {},
     selection_strategy = "reset",
     sorting_strategy = "descending",
+    border = {},
+    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    color_devicons = true,
 
     mappings = {
       i = {
@@ -22,6 +27,13 @@ telescope.setup {
     },
   },
   pickers = {
+    find_files = {
+      hidden = false,
+    },
+    live_grep = {
+      --@usage don't include the filename in the search results
+      only_sort_text = true,
+    },
   },
   extensions = {
       fzf = {
