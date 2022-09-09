@@ -97,6 +97,15 @@ return packer.startup(function(use)
   -- Fix Whitespace
   use { "bronson/vim-trailing-whitespace" }
 
+  -- debug adapter client
+  use { "mfussenegger/nvim-dap" }
+  -- debug ui
+  use { "rcarriga/nvim-dap-ui" }
+  -- nvim-dap-go
+  use { "leoluz/nvim-dap-go" }
+  -- virtual text dap
+  use { "theHamsta/nvim-dap-virtual-text" }
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

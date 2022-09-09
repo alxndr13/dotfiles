@@ -119,14 +119,15 @@ local which_key_opts = {
         S = { "<cmd>PackerStatus<cr>", "Status" },
         u = { "<cmd>PackerUpdate<cr>", "Update" },
       },
-
-      -- " Available Debug Adapters:
-      -- "   https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
-      -- " Adapter configuration and installation instructions:
-      -- "   https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-      -- " Debug Adapter protocol:
-      -- "   https://microsoft.github.io/debug-adapter-protocol/
-      -- " Debugging
+      d = {
+        name = "DAP",
+        o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over"},
+        i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into"},
+        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue"},
+        b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Set Breakpoint"},
+        t = { "<cmd>lua require'dap-go'.debug_test()<cr>", "Debug current test"},
+        u = { "<cmd>lua require'dapui'.toggle()<cr>", "Show DAP UI"},
+      },
       g = {
         name = "Git",
         j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },

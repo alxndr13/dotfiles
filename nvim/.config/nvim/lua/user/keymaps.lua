@@ -73,3 +73,13 @@ keymap("n", "<leader>tt", "<cmd>TroubleToggle<CR>", opts)
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+
+
+-- DAP
+keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()", opts)
+keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()", opts)
+keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()", opts)
+keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()", opts)
+
+-- DAP UI
+keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>",opts)
