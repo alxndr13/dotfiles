@@ -1,6 +1,5 @@
 input * {
-    xkb_layout "de"
-    xkb_variant nodeadkeys
+    xkb_layout "eu"
     xkb_options "grp:win_space_toggle"
 }
 
