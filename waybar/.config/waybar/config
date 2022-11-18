@@ -1,88 +1,117 @@
 {
-    "position": "bottom",
-    "height": 30,
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["idle_inhibitor"],
-    "modules-right": ["custom/bt", "custom/vpn", "network", "pulseaudio", "battery", "temperature", "clock"],
-    // Modules configuration
-	"sway/workspaces": {
-		"disable-scroll": true,
-		"all-outputs": false,
-		"format": "{icon}",
-         	"format-icons": {
-             		"1": "λ",
-             		"2": "II",
-             		"3": "III",
-             		"4": "IV",
-             		"5": "V",
-             		"6": "VI",
-             		"7": "VII",
-             		"8": "VIII",
-             		"9": "IX",
-             		"10": "X" }
-     },
-	"clock": {
-		"format": "{:%d.%m %H:%M} ",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
-	},
-	"battery": {
-        	"states": {
-            		"warning": 30,
-            		"critical": 15,
-        	},
-            "format": "<span font='20' rise='-3000'>{icon}</span> {capacity}%",
-            "format-icons": ["", "", "", "", ""],
-        	"format-charging": "<span font='20' rise='-3000'>{icon}</span> {capacity}% {time}",
-        	"format-plugged": "<span font='20' rise='-3000'>{icon}</span> {capacity}%",
-        	"format-alt": "{capacity}%",
-        	"format-full": "<span font='20' rise='-3000'>{icon}</span> full at {capacity}%",
-	},
-	"network": {
-        	"format-wifi": "<span font='20' rise='-3000'></span> {essid}",
-        	"format-ethernet": "<span font='20' rise='-3000'></span>   {ipaddr}",
-        	"format-linked": "{ifname} (No IP) ",
-            "format-disconnected": "  Disconnected",
-            "tooltip-format-wifi": "Signal Strength: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
-            "tooltip-format-ethernet": "Interface: {ifname}",
-	},
-	"pulseaudio": {
-		"on-click": "pavucontrol",
-        "scroll-step": 5.0,
-        "format-source": "Mic ON",
-        "format-source-muted": "Mic OFF",
-		    "format": "<span font='20' rise='-3000'>{icon}</span>  {volume}%",
-        	"format-muted": "󰖁 Muted",
-        	"format-icons": {
-            	"headphone": "",
-            	"hands-free": "",
-            	"headset": "",
-            	"phone": "",
-            	"portable": "",
-            	"car": "",
-            	"default": ["", "", ""]
-        },
+  "position": "bottom",
+  "height": 20,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+  ],
+  "modules-center": [
+    "idle_inhibitor",
+    "custom/bt",
+    "custom/vpn",
+    "network",
+    "pulseaudio",
+    "battery",
+    "temperature",
+    "clock",
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "λ",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X"
+    }
+  },
+  "clock": {
+    "format": "{:%d.%m %H:%M} ",
+    "locale": "de_DE.UTF-8",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
+    "today-format": "<b>{}</b>"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
     },
-    "temperature": {
-        "format": " {temperatureC}°C",
-        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "custom/vpn": {
-        "exec": "$HOME/.local/bin/vpn-state.sh 'client'",
-        "on-click": "$HOME/.local/bin/toggle-vpn.sh 'client'",
-        "format": "<span font='20' rise='-3000'> {}</span> wireguard",
-        "interval": 30
-    },
-    "custom/bt": {
-        "exec": "$HOME/.local/bin/bt-state.sh",
-        "on-click": "$HOME/.local/bin/bt-state.sh",
-        "format": " {}",
-        "interval": 10
-    },
+    "format": "{icon}  {capacity}% {time}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "format-charging": "{icon}  {capacity}% {time}",
+    "format-plugged": "{icon}  {capacity}%",
+    "format-alt": "{icon}  {capacity}%",
+    "format-full": "{icon}  full at {capacity}%"
+  },
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "  {ipaddr}",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "  Disconnected",
+    "tooltip-format-wifi": "Signal Strength: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
+    "tooltip-format-ethernet": "Interface: {ifname}"
+  },
+  "pulseaudio": {
+    "on-click": "pavucontrol",
+    "scroll-step": 5,
+    "tooltip": false,
+    "format-source": "Mic ON",
+    "format-source-muted": "Mic OFF",
+    "format": "{icon}  {volume}% {format_source}",
+    "format-muted": "󰖁 Muted",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "temperature": {
+    "format": " {temperatureC}°C",
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "custom/vpn": {
+      "exec": "$HOME/.local/bin/vpn-state.sh 'client'",
+      "on-click": "$HOME/.local/bin/toggle-vpn.sh 'client'",
+      "format": "{}  wireguard",
+      "interval": 30
+  },
+  "custom/bt": {
+    "exec": "$HOME/.local/bin/bt-state.sh",
+    "on-click": "$HOME/.local/bin/bt-state.sh",
+    "format": " {}",
+    "interval": 10,
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  }
 }

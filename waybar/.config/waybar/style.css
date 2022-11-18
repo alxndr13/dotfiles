@@ -1,105 +1,111 @@
+@import "frappe.css";
+
 * {
     border-radius: 0;
-    font-family: Hack;
+    border: 0;
+    font-family: JetBrainsMono Nerd Font;
     padding-bottom: 0px;
     padding-top: 0px;
     font-size: 14px;
     min-height: 0;
-
     /* border: 10px solid transparent;
     border-image: url(~/.config/sway/borders/dropShadowDarkOffset2.png) 30 stretch; */
 }
 
 window#waybar {
-    padding: 0px;
-    background: #2a2e38;
-    color: white;
+    background: transparent;
+    color: @text;
 }
 
 tooltip {
-	background: #2a2e38;
+	background: @surface0;
 	border-radius: 15px;
 	border-width: 2px;
 	border-style: solid;
-	border-color: #2a2e38;
+	border-color: @overlay1;
 }
 
 #workspaces button {
-    padding: 4px 10px;
-    color: #bbc2cf;
-    margin: 3px;
-    font-size: 12px;
+    padding: 5px 10px;
+    margin-right: 3px;
+    margin-left: 3px;
+    color: @text;
 }
 
 #workspaces button.focused {
     box-shadow: 2px 2px 6px 1px black;
-    color: #2a2e38;
-    background-color: #51afef;
-    border-radius: 10px;
+    color: @subtext2;
+    background-color: @peach;
+    border-radius: 5px;
 }
 
 #workspaces button.urgent {
-    color: #2a2e38;
-    background-color: #7bc275;
-    border-radius: 15px;
+    color: @text;
+    background-color: @red;
+    border-radius: 5px;
 }
 
 #workspaces button:hover {
-	background-color: #5cEfFF;
-	color: #2a2e38;
-	border-radius: 15px;
+	background-color: @maroon;
+	color: @text;
+	border-radius: 5px;
 }
 
-#clock, #battery, #pulseaudio, #network, #workspaces, #temperature, #custom-vpn, #idle_inhibitor {
-	background-color: #2a2e38;
-	padding: 1px 10px;
-	margin: 0px 0px;
+#clock, #battery, #pulseaudio, #network, #workspaces, #temperature, #custom-vpn, #idle_inhibitor, #custom-bt {
+	background-color: @base;
+	padding: 5px 10px;
+	margin: 5px 0px;
+}
+
+#custom-bt {
+  padding: 5px;
 }
 
 #workspaces {
-	background-color: #2a2e38;
+	background-color: @transparent;
 	border-radius: 15px 0px 0px 15px;
 }
 
 #clock {
-    color: #FCCE7B;
-    border-radius: 0px 15px 15px 0px;
-    margin-right: 10px;
+  color: @mauve;
+	border-radius: 0px 15px 15px 0px;
 }
 
 #battery {
-    color: #7bc275;
+    color: @green;
 }
 
 #battery.charging {
-    color: #7bc275;
+    color: @green;
 }
 
 #battery.warning:not(.charging) {
-    background-color: #2a2e38;
-    color: #FCCE7B;
+    color: @maroon;
 }
 
 #network {
-	color: #C57BDB;
-	border-radius: 0px 0px 0px 0px;
+	color: @yellow;
 }
 
 #pulseaudio {
-	color: #4db5bd;
+	color: @blue;
 }
 
 #temperature {
-	color: #D08770;
+	color: @maroon;
 }
 
 #idle_inhibitor {
-	color: #ECEFF4;
+	color: @text;
+  padding-left: 15px;
+  padding-right: 15px;
+	border-radius: 15px 0px 0px 15px;
 }
 
 #custom-vpn {
-    color: #BF616A;
+    color: @red;
 }
+
 #custom-bt {
-    color: #88C0D0;
+    color: @sapphire;
 }
