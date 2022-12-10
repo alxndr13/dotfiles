@@ -1,21 +1,30 @@
 input * {
     xkb_layout "eu"
-    xkb_options "grp:win_space_toggle"
+    xkb_options ctrl:nocaps
 }
 
-output "*" bg ~/.wallpaper/wallpaperflare.com_wallpaper.jpg fill
+input type:keyboard xkb_capslock disabled
 
+output "*" bg ~/.wallpaper/red_peach.png fill
+
+# https://github.com/emersion/xdg-desktop-portal-wlr/wiki/systemd-user-services,-pam,-and-environment-variables
+exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
 exec_always "pkill kanshi; kanshi &"
-exec_always flameshot
+exec_always --no-startup-id flameshot
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec solaar -w hide
+
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Nordic'
+    gsettings set $gnome-schema gtk-theme 'Catppuccin-Frappe-Grey'
     gsettings set $gnome-schema icon-theme 'Numix'
-    gsettings set $gnome-schema cursor-theme 'Vimix Cursors'
+    gsettings set $gnome-schema cursor-theme 'Bibata-Modern-Ice'
 }
+
+seat seat0 xcursor_theme Bibata-Modern-Ice
 
 # Sleep timer
 exec swayidle -w \
