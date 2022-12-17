@@ -76,18 +76,9 @@ bindsym XF86MonBrightnessDown exec "sudo light -U 10; notify-send 'brightness do
 # MicToggle
 bindsym XF86AudioMicMute exec "~/.local/bin/mic-toggle.sh"
 
+# WifiToggle
+bindsym XF86WLAN exec "notify-send 'WiFi Toggled'"
 
-# Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec chromium
-bindsym $mod+F3 exec nautilus
-bindsym $mod+Shift+t exec chromium https://todoist.com/app/today
-
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
 
 # focus_follows_mouse no
 
@@ -102,9 +93,6 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-# lock screen
-bindsym $mod+Shift+l exec swaylock
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -263,13 +251,13 @@ bindsym $mod+Shift+s exec flameshot gui -r | wl-copy
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #D8DEE9 #dee2e3 #2E3440 #BF616A
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000
+  client.focused          #626880 #626880 #c6d0f5 #BF616A
+  client.focused_inactive #626880 #626880 #c6d0f5 #454948
+  client.unfocused        #303446 #303446 #a5adce #454948
+  client.urgent           #e78284 #303446 #e78284 #268BD2
+  client.placeholder      #000000 #303446 #ffffff #000000
 
-  client.background       #2B2C2B
+  client.background       #303446
 
 # Set inner/outer gaps
 gaps inner 14
@@ -282,12 +270,11 @@ smart_gaps on
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
-set $mode_shutdown Shutdown Mode: (s) suspend, (h) hibernate, (p) poweroff, (e) exit
+set $mode_shutdown Shutdown Mode: (s) suspend, (p) poweroff, (e) exit
 bindsym $mod+Shift+i mode "$mode_shutdown"
 mode "$mode_shutdown" {
-    bindsym s exec systemctl suspend, mode "default"
-    bindsym h exec systemctl hibernate, mode "default"
-    bindsym p exec poweroff
+    bindsym s exec systemctl suspend -i, mode "default"
+    bindsym p exec sudo poweroff
     bindsym e exec swaymsg exit, mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
