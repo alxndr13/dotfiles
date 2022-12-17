@@ -3,6 +3,8 @@
   "height": 20,
   "modules-left": [
     "sway/workspaces",
+  ],
+  "modules-right": [
     "sway/mode",
   ],
   "modules-center": [
