@@ -12,6 +12,7 @@ exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always "pkill kanshi; kanshi &"
 exec_always --no-startup-id flameshot
+exec_always --no-startup-id nm-applet
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec solaar -w hide
@@ -39,7 +40,7 @@ set $mod Mod1
 bindsym --to-code $mod+Shift+c reload
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
+default_border pixel 2
 default_floating_border normal
 
 # Hide borders
@@ -69,6 +70,15 @@ bindsym $mod+d exec --no-startup-id "wofi --show drun"
 
 bindsym $mod+Ctrl+m exec pavucontrol
 
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+
+################################################################################################
+
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "sudo light -A 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "sudo light -U 10; notify-send 'brightness down'"
@@ -79,8 +89,6 @@ bindsym XF86AudioMicMute exec "~/.local/bin/mic-toggle.sh"
 # WifiToggle
 bindsym XF86WLAN exec "notify-send 'WiFi Toggled'"
 
-
-# focus_follows_mouse no
 
 # change focus
 bindsym $mod+j focus left
@@ -94,6 +102,9 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# lock screen
+bindsym $mod+Shift+l exec ~/.local/bin/lock.sh
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -103,6 +114,7 @@ bindsym $mod+Shift+Right move right
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
+bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
@@ -175,7 +187,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
+assign [class="Slack"] $ws2
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
@@ -188,9 +200,9 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # Solaar Window Settings
-for_window [class="Solaar"] floating enable border normal
-for_window [class="Solaar"] resize set 640 480
-for_window [class="Solaar"] move position center
+for_window [app_id="Solaar"] floating enable border normal
+for_window [app_id="Solaar"] resize set 640 480
+for_window [app_id="Solaar"] move position center
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -240,14 +252,7 @@ bindsym $mod+9 exec --no-startup-id exec ~/.local/bin/lock.sh
 bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/mic-toggle.sh
 bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/cam-toggle.sh
 
-
-# Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id xfce4-power-manager
-exec solaar -w hide
-exec_always --no-startup-id sudo ip link set enp2s0f0 down
-
-bindsym $mod+Shift+s exec flameshot gui -r | wl-copy
+bindsym $mod+Shift+s exec "flameshot gui"
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
@@ -280,6 +285,16 @@ mode "$mode_shutdown" {
     bindsym Return mode "default"
 }
 
+set $mode_headset Headset Mode: (a) a2dp , (h) hsp/hfp
+
+bindsym $mod+Shift+h mode "$mode_headset"
+mode "$mode_headset" {
+    bindsym a exec ~/.local/bin/switch-headset-mode.sh "a2dp-sink-aac", mode "default"
+    bindsym h exec ~/.local/bin/switch-headset-mode.sh "headset-head-unit-msbc", mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -292,6 +307,7 @@ mode "$mode_gaps" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_inner" {
         bindsym plus  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
@@ -304,6 +320,7 @@ mode "$mode_gaps_inner" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_outer" {
         bindsym plus  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
@@ -316,6 +333,9 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 bar {
     swaybar_command waybar
 }
+
+exec --no-startup-id systemctl --user restart xdg-desktop-portal
