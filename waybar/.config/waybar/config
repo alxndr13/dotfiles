@@ -3,19 +3,21 @@
   "height": 20,
   "modules-left": [
     "sway/workspaces",
-  ],
-  "modules-right": [
     "sway/mode",
+    "user",
   ],
   "modules-center": [
     "idle_inhibitor",
-    "custom/bt",
-    "custom/vpn",
-    "network",
-    "pulseaudio",
+  ],
+  "modules-right": [
     "battery",
-    "temperature",
+    "pulseaudio",
+    "backlight",
+    "network",
+    "custom/vpn",
+    "custom/bt",
     "clock",
+    "custom/power",
   ],
   "sway/workspaces": {
     "disable-scroll": true,
@@ -35,17 +37,24 @@
     }
   },
   "clock": {
-    "format": "{:%d.%m %H:%M} ",
+    "format": " {:%d.%m %H:%M}",
     "locale": "de_DE.UTF-8",
+    "format-calendar-weeks": "{:%V}|",
+    "calendar-weeks-pos": "left",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
     "today-format": "<b>{}</b>"
+  },
+  "custom/power": {
+    "tooltip": false,
+    "on-click": "power-menu.sh",
+    "format": "⏻"
   },
   "battery": {
     "states": {
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}  {capacity}% {time}",
+    "format": "{icon} {capacity}% {time}",
     "format-icons": [
       "",
       "",
@@ -53,26 +62,32 @@
       "",
       ""
     ],
-    "format-charging": "{icon}  {capacity}% {time}",
-    "format-plugged": "{icon}  {capacity}%",
-    "format-alt": "{icon}  {capacity}%",
-    "format-full": "{icon}  full at {capacity}%"
+    "format-charging": "{icon} {capacity}% {time}",
+    "format-plugged": "{icon} {capacity}%",
+    "format-alt": "{icon} {capacity}%",
+    "format-full": "{icon} full at {capacity}%"
   },
   "network": {
-    "format-wifi": "  {essid}",
-    "format-ethernet": "  {ipaddr}",
+    "format-wifi": " {essid}",
+    "format-ethernet": " {ipaddr}",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "  Disconnected",
     "tooltip-format-wifi": "Signal Strength: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
     "tooltip-format-ethernet": "Interface: {ifname}"
   },
+  "backlight": {
+     "format": "{icon} {percent}%",
+     "format-icons": ["", "", "", "", "", "", "", "", ""],
+     "on-scroll-up": "brightnessctl s +1",
+     "on-scroll-down": "brightnessctl s 1-",
+   },
   "pulseaudio": {
     "on-click": "pavucontrol",
     "scroll-step": 5,
     "tooltip": false,
     "format-source": "Mic ON",
     "format-source-muted": "Mic OFF",
-    "format": "{icon}  {volume}% {format_source}",
+    "format": "{icon} {volume}% {format_source}",
     "format-muted": "󰖁 Muted",
     "format-icons": {
       "headphone": "",
@@ -88,10 +103,6 @@
       ]
     }
   },
-  "temperature": {
-    "format": " {temperatureC}°C",
-    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input"
-  },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -103,7 +114,7 @@
       "exec": "$HOME/.local/bin/vpn-state.sh 'client'",
       "on-click": "$HOME/.local/bin/toggle-vpn.sh 'client'",
       "format": "{}  wireguard",
-      "interval": 30
+      "interval": 5
   },
   "custom/bt": {
     "exec": "$HOME/.local/bin/bt-state.sh",
@@ -115,5 +126,12 @@
   "tray": {
     "icon-size": 21,
     "spacing": 10
+  },
+  "user": {
+    "format": "up {work_d} d, {work_H} h ↑",
+    "interval": 60,
+    "height": 20,
+    "width": 30,
+    "icon": false,
   }
 }

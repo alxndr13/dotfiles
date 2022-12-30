@@ -1,111 +1,140 @@
 @import "frappe.css";
 
 * {
-    border-radius: 0;
-    border: 0;
-    font-family: JetBrainsMono Nerd Font;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    font-size: 14px;
-    min-height: 0;
-    /* border: 10px solid transparent;
-    border-image: url(~/.config/sway/borders/dropShadowDarkOffset2.png) 30 stretch; */
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  /* font-family: Material Design Icons, Source Code Pro; */
+  font-family: Hack;
+  font-size: 14px;
 }
 
 window#waybar {
-    background: transparent;
-    color: @text;
+  background-color: @base;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
-tooltip {
-	background: @surface0;
-	border-radius: 15px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: @overlay1;
-}
-
-#workspaces button {
-    padding: 5px 10px;
-    margin-right: 3px;
-    margin-left: 3px;
-    color: @text;
-}
-
-#workspaces button.focused {
-    box-shadow: 2px 2px 6px 1px black;
-    color: @subtext2;
-    background-color: @peach;
-    border-radius: 5px;
-}
-
-#workspaces button.urgent {
-    color: @text;
-    background-color: @red;
-    border-radius: 5px;
-}
-
-#workspaces button:hover {
-	background-color: @maroon;
-	color: @text;
-	border-radius: 5px;
-}
-
-#clock, #battery, #pulseaudio, #network, #workspaces, #temperature, #custom-vpn, #idle_inhibitor, #custom-bt {
-	background-color: @base;
-	padding: 5px 10px;
-	margin: 5px 0px;
-}
-
-#custom-bt {
-  padding: 5px;
+window#waybar.hidden {
+  opacity: 0.5;
 }
 
 #workspaces {
-	background-color: @transparent;
-	border-radius: 15px 0px 0px 15px;
+  background-color: transparent;
 }
 
-#clock {
-  color: @mauve;
-	border-radius: 0px 15px 15px 0px;
+#workspaces button {
+  all: initial; /* Remove GTK theme values (waybar #1351) */
+  min-width: 0; /* Fix weird spacing in materia (waybar #450) */
+  box-shadow: inset 0 -3px transparent; /* Use box-shadow instead of border so the text isn't offset */
+  padding: 6px 18px;
+  margin: 6px 3px;
+  border-radius: 4px;
+  background-color: @crust;
+  color: @text;
 }
 
+#workspaces button.focused {
+  color: @crust;
+  background-color: @text;
+}
+
+#workspaces button:hover {
+ box-shadow: inherit;
+ text-shadow: inherit;
+ color: #1e1e2e;
+ background-color: #cdd6f4;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+}
+
+#mode {
+  color: @subtext0;
+  background-color: @base;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#custom-bt,
+#custom-vpn,
+#custom-power,
+#idle_inhibitor,
+#battery,
+#backlight,
+#pulseaudio,
+#network,
+#clock,
+#tray {
+  border-radius: 4px;
+  margin: 6px 3px;
+  padding: 6px 12px;
+  background-color: #1e1e2e;
+  color: #181825;
+}
 #battery {
-    color: @green;
+  background-color: @red;
 }
-
-#battery.charging {
-    color: @green;
+@keyframes blink {
+  to {
+    background-color: @red;
+    color: #181825;
+  }
 }
-
-#battery.warning:not(.charging) {
-    color: @maroon;
+.warning,
+.critical,
+.urgent,
+#battery.critical:not(.charging) {
+  background-color: @red;
+  color: #181825;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
-
-#network {
-	color: @yellow;
+#backlight {
+  background-color: @flamingo;
 }
-
 #pulseaudio {
-	color: @blue;
+  background-color: @peach;
 }
-
-#temperature {
-	color: @maroon;
+#network {
+  background-color: @green;
 }
-
-#idle_inhibitor {
-	color: @text;
-  padding-left: 15px;
-  padding-right: 15px;
-	border-radius: 15px 0px 0px 15px;
+#clock {
+  background-color: @mauve;
 }
-
 #custom-vpn {
-    color: @red;
+  background-color: @teal;
+}
+#custom-bt {
+  background-color: @blue;
+}
+#idle_inhibitor {
+  background-color: @overlay0;
+}
+#idle_inhibitor.activated {
+  background-color: @text;
+}
+#custom-power {
+  background-color: @overlay0;
 }
 
-#custom-bt {
-    color: @sapphire;
+#user {
+  color: @subtext0;
+  background-color: @base;
+}
+
+tooltip {
+  font-family: "Inter", sans-serif;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 30px;
+}
+
+tooltip label {
+  font-family: "Inter", sans-serif;
+  padding: 20px;
 }
