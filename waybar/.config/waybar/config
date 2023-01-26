@@ -1,6 +1,10 @@
-{
+[{
   "position": "bottom",
   "height": 20,
+  "output": "HDMI-A-1",
+  "include": [
+		"~/.config/waybar/modules.json",
+	],
   "modules-left": [
     "sway/workspaces",
     "sway/mode",
@@ -11,127 +15,32 @@
   ],
   "modules-right": [
     "battery",
+    "network",
+    "clock",
+  ],
+},
+{
+  "position": "bottom",
+  "height": 20,
+  "output": ["DP-1", "eDP-1"],
+  "include": [
+		"~/.config/waybar/modules.json",
+	],
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+  ],
+  "modules-center": [
+    "idle_inhibitor",
+  ],
+  "modules-right": [
+    "battery",
     "pulseaudio",
-    "backlight",
+    "custom/wttr",
     "network",
     "custom/vpn",
     "custom/bt",
     "clock",
     "custom/power",
   ],
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": false,
-    "format": "{icon}",
-    "format-icons": {
-      "1": "λ",
-      "2": "II",
-      "3": "III",
-      "4": "IV",
-      "5": "V",
-      "6": "VI",
-      "7": "VII",
-      "8": "VIII",
-      "9": "IX",
-      "10": "X"
-    }
-  },
-  "clock": {
-    "format": " {:%d.%m %H:%M}",
-    "locale": "de_DE.UTF-8",
-    "format-calendar-weeks": "{:%V}|",
-    "calendar-weeks-pos": "left",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
-    "today-format": "<b>{}</b>"
-  },
-  "custom/power": {
-    "tooltip": false,
-    "on-click": "power-menu.sh",
-    "format": "⏻"
-  },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon} {capacity}% {time}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "format-charging": "{icon} {capacity}% {time}",
-    "format-plugged": "{icon} {capacity}%",
-    "format-alt": "{icon} {capacity}%",
-    "format-full": "{icon} full at {capacity}%"
-  },
-  "network": {
-    "format-wifi": " {essid}",
-    "format-ethernet": " {ipaddr}",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "  Disconnected",
-    "tooltip-format-wifi": "Signal Strength: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
-    "tooltip-format-ethernet": "Interface: {ifname}"
-  },
-  "backlight": {
-     "format": "{icon} {percent}%",
-     "format-icons": ["", "", "", "", "", "", "", "", ""],
-     "on-scroll-up": "brightnessctl s +1",
-     "on-scroll-down": "brightnessctl s 1-",
-   },
-  "pulseaudio": {
-    "on-click": "pavucontrol",
-    "scroll-step": 5,
-    "tooltip": false,
-    "format-source": "Mic ON",
-    "format-source-muted": "Mic OFF",
-    "format": "{icon} {volume}% {format_source}",
-    "format-muted": "󰖁 Muted",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    }
-  },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    }
-  },
-  "custom/vpn": {
-      "exec": "$HOME/.local/bin/vpn-state.sh 'client'",
-      "on-click": "$HOME/.local/bin/toggle-vpn.sh 'client'",
-      "format": "{}  wireguard",
-      "interval": 5
-  },
-  "custom/bt": {
-    "exec": "$HOME/.local/bin/bt-state.sh",
-    "on-click": "$HOME/.local/bin/bt-state.sh",
-    "format": " {}",
-    "interval": 10,
-    "tooltip": false
-  },
-  "tray": {
-    "icon-size": 21,
-    "spacing": 10
-  },
-  "user": {
-    "format": "up {work_d} d, {work_H} h ↑",
-    "interval": 60,
-    "height": 20,
-    "width": 30,
-    "icon": false,
-  }
-}
+}]

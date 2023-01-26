@@ -21,6 +21,7 @@ window#waybar.hidden {
 
 #workspaces {
   background-color: transparent;
+  margin-left: 5px;
 }
 
 #workspaces button {
@@ -60,6 +61,7 @@ window#waybar.hidden {
 #custom-bt,
 #custom-vpn,
 #custom-power,
+#custom-wttr,
 #idle_inhibitor,
 #battery,
 #backlight,
@@ -112,6 +114,9 @@ window#waybar.hidden {
 #custom-bt {
   background-color: @blue;
 }
+#custom-wttr {
+  background-color: @yellow;
+}
 #idle_inhibitor {
   background-color: @overlay0;
 }
@@ -125,6 +130,7 @@ window#waybar.hidden {
 #user {
   color: @subtext0;
   background-color: @base;
+  margin-left: 10px;
 }
 
 tooltip {
