@@ -134,6 +134,7 @@ alias btoff='bluetoothctl power off'
 alias btbose='bluetoothctl connect 60:AB:D2:41:CD:11'
 alias btk6='bluetoothctl connect DC:2C:26:2A:3E:00'
 alias n='nnn'
+alias cal='cal -w -n 3 -m'
 alias kt='kitty --detach'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
