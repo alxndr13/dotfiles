@@ -5,21 +5,12 @@ input * {
 
 input type:keyboard xkb_capslock disabled
 
-output "*" bg ~/.wallpaper/red_peach.png fill
-
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-
-# https://github.com/emersion/xdg-desktop-portal-wlr/wiki/systemd-user-services,-pam,-and-environment-variables
-exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+output "*" bg ~/.wallpaper/wallpaperflare.com_wallpaper.jpg fill
 
 exec_always "pkill kanshi; kanshi &"
-exec_always --no-startup-id flameshot
 exec_always --no-startup-id nm-applet
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec solaar -w hide
 
 set $gnome-schema org.gnome.desktop.interface
@@ -257,7 +248,7 @@ bindsym $mod+9 exec --no-startup-id exec ~/.local/bin/lock.sh
 bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/mic-toggle.sh
 bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/cam-toggle.sh
 
-bindsym $mod+Shift+s exec "flameshot gui"
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
@@ -343,4 +334,5 @@ bar {
     swaybar_command waybar
 }
 
-exec --no-startup-id systemctl --user restart xdg-desktop-portal
+# https://github.com/emersion/xdg-desktop-portal-wlr/wiki/systemd-user-services,-pam,-and-environment-variables
+exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"

@@ -15,4 +15,6 @@ export WLR_NO_HARDWARE_CURSORS=1
 export GTK_THEME="Catppuccin-Frappe-Standard-Sky-Dark"
 # https://www.reddit.com/r/kde/comments/mqpuxk/comment/guka2e2/?utm_source=share&utm_medium=web2x&context=3
 #export GTK_USE_PORTAL=1
-sway
+if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec sway --debug --verbose >> /var/log/sway-hucka.log
+fi
