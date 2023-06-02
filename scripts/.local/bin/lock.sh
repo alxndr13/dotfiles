@@ -28,7 +28,7 @@ swaylock --hide-keyboard-layout \
     --grace 1 \
     -f \
     -e \
-    -i /home/hucka/.wallpaper/red_peach.png \
+    -i /home/hucka/.wallpaper/arch-black-4k.png \
     -s fill \
     -l \
     --fade-in 2
