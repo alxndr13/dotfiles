@@ -250,6 +250,9 @@ bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/cam-toggle.sh
 
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 
+# Dismiss all notifications
+bindsym $mod+period exec makoctl dismiss -a
+
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
   client.focused          #626880 #626880 #c6d0f5 #BF616A
