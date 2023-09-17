@@ -280,7 +280,7 @@ smart_borders on
 set $mode_shutdown Shutdown Mode: (s) suspend, (p) poweroff, (e) exit
 bindsym $mod+Shift+i mode "$mode_shutdown"
 mode "$mode_shutdown" {
-    bindsym s exec systemctl suspend -i, mode "default"
+    bindsym s exec ~/.local/bin/lock.sh && sleep 0.2 && systemctl suspend -i, mode "default"
     bindsym p exec sudo poweroff
     bindsym e exec swaymsg exit, mode "default"
     bindsym Escape mode "default"
