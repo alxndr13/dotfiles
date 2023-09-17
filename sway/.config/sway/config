@@ -9,6 +9,7 @@ output "*" bg ~/.wallpaper/arch-black-4k.png fill
 
 exec_always "pkill kanshi; kanshi &"
 exec_always --no-startup-id nm-applet
+exec_always --no-startup-id killall flameshot && flameshot
 
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec solaar -w hide
@@ -199,6 +200,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [app_id="Solaar"] floating enable border normal
 for_window [app_id="Solaar"] resize set 640 480
 for_window [app_id="Solaar"] move position center
+for_window [app_id="flameshot"] fullscreen enable global
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -248,7 +250,8 @@ bindsym $mod+9 exec --no-startup-id exec ~/.local/bin/lock.sh
 bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/mic-toggle.sh
 bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/cam-toggle.sh
 
-bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+Shift+s exec flameshot gui
+# bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 
 # Dismiss all notifications
 bindsym $mod+period exec makoctl dismiss -a
