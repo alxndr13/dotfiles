@@ -3,7 +3,7 @@ export EDITOR=/usr/bin/vim
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export GOPATH="/home/hucka/go/"
 export PATH="/home/hucka/.local/bin/:$PATH"
-export BROWSER="firefox.desktop"
+export BROWSER="chromium.desktop"
 
 
 export SDL_VIDEODRIVER=wayland
