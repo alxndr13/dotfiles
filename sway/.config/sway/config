@@ -254,7 +254,7 @@ bindsym $mod+Shift+s exec flameshot gui
 # bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 
 # Dismiss all notifications
-bindsym $mod+period exec makoctl dismiss -a
+bindsym $mod+comma exec makoctl dismiss -a
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
