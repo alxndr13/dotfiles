@@ -12,7 +12,7 @@ export QT_QPA_PLATFORM=wayland
 export XDG_CURRENT_DESKTOP="sway"
 export XDG_SESSION_DESKTOP="sway"
 export WLR_NO_HARDWARE_CURSORS=1
-export GTK_THEME="Catppuccin-Frappe-Standard-Sky-Dark"
+export GTK_THEME="Catppuccin-Frappe-Standard-Sky-dark"
 # https://www.reddit.com/r/kde/comments/mqpuxk/comment/guka2e2/?utm_source=share&utm_medium=web2x&context=3
 #export GTK_USE_PORTAL=1
 if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
