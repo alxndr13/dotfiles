@@ -1,7 +1,14 @@
 [user]
 	email = alxndr13@mailbox.org
 	name = Alexander Huck
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHzu70ASI2PdCNVQPyjo/+qqMyUWM6OcmZkHTpA98VDc
 [alias]
 	p = push
 [merge]
 	conflictstyle = diff3
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /opt/1Password/op-ssh-sign
+[commit]
+	gpgsign = true
