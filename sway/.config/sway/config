@@ -204,10 +204,12 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # Solaar Window Settings
-for_window [app_id="Solaar"] floating enable border normal
-for_window [app_id="Solaar"] resize set 640 480
-for_window [app_id="Solaar"] move position center
+for_window [app_id="solaar"] floating enable border normal
+for_window [app_id="solaar"] resize set 640 480
+for_window [app_id="solaar"] move position center
 for_window [title="flameshot" app_id="flameshot"] fullscreen enable global
+for_window [title="^Save\ screenshot$" app_id="flameshot"] move position center
+for_window [title="^Save\ screenshot$" app_id="flameshot"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
