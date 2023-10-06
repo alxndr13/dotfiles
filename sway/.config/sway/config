@@ -7,6 +7,10 @@ input type:keyboard xkb_capslock disabled
 
 output "*" bg ~/.wallpaper/arch-black-4k.png fill
 
+exec emote
+exec cliphist wipe
+exec wl-paste --watch cliphist store
+
 exec_always "pkill kanshi; kanshi &"
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id killall flameshot && flameshot
@@ -64,6 +68,9 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id "wofi --show drun"
+
+# emoji picker
+bindsym $mod+slash exec emote
 
 bindsym $mod+Ctrl+m exec pavucontrol
 
@@ -200,7 +207,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [app_id="Solaar"] floating enable border normal
 for_window [app_id="Solaar"] resize set 640 480
 for_window [app_id="Solaar"] move position center
-for_window [app_id="flameshot"] fullscreen enable global
+for_window [title="flameshot" app_id="flameshot"] fullscreen enable global
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -255,6 +262,9 @@ bindsym $mod+Shift+s exec flameshot gui
 
 # Dismiss all notifications
 bindsym $mod+comma exec makoctl dismiss -a
+
+# clipboard manager
+bindsym $mod+c exec cliphist list | wofi --show dmenu | cliphist decode | wl-copy
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

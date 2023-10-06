@@ -109,7 +109,8 @@ export EDITOR="vim"
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # Aliases
-alias ll='exa -l'
+alias ll='eza --icons -l --time-style relative --git -snew'
+alias dive="dive --source=podman"
 alias vi='nvim'
 alias vim='nvim'
 alias k='kubectl'
