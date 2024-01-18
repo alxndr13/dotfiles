@@ -5,7 +5,7 @@ set folder="imaps://imap.mailbox.org/"
 set from="alexander.huck@mailbox.org"
 
 set imap_user="alxndr13@mailbox.org"
-set imap_pass=`gopass show -o mailbox.org`
+set imap_pass=`op read op://Personal/mailbox.org/password`
 set smtp_url=smtps://$imap_user:$imap_pass@smtp.mailbox.org
 set spoolfile="+INBOX"
 set header_cache = ~/.mutt/cache/headers
