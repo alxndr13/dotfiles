@@ -2,4 +2,4 @@
 from subprocess import check_output
 
 def get_pass(account):
-    return check_output("gopass show -o mailbox.org", shell=True).splitlines()[0]
+    return check_output("op read op://Personal/mailbox.org/password", shell=True).splitlines()[0]

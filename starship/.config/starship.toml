@@ -1,0 +1,73 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = "catppuccin_frappe"
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+# success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[git_status]
+format = '([\[$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind\]](peach) )'
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)](red) '
+cherry_pick = '[🍒 PICKING]($red)'
+
+[git_branch]
+format = 'on [$symbol$branch(:$remote_branch)](green) '
+
+[time]
+disabled = true
+format = '[\[$time\]]($base) '
+time_format = '%T'
+
+[directory]
+format = '[$path](blue)[$read_only](red) '
+truncation_length = 8
+truncation_symbol = '…/'
+
+[cmd_duration]
+min_time = 500
+format = 'took [$duration]($style) '
+
+
+[palettes.catppuccin_frappe]
+rosewater = "#f2d5cf"
+flamingo = "#eebebe"
+pink = "#f4b8e4"
+mauve = "#ca9ee6"
+red = "#e78284"
+maroon = "#ea999c"
+peach = "#ef9f76"
+yellow = "#e5c890"
+green = "#a6d189"
+teal = "#81c8be"
+sky = "#99d1db"
+sapphire = "#85c1dc"
+blue = "#8caaee"
+lavender = "#babbf1"
+text = "#c6d0f5"
+subtext1 = "#b5bfe2"
+subtext0 = "#a5adce"
+overlay2 = "#949cbb"
+overlay1 = "#838ba7"
+overlay0 = "#737994"
+surface2 = "#626880"
+surface1 = "#51576d"
+surface0 = "#414559"
+base = "#303446"
+mantle = "#292c3c"
+crust = "#232634"
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true

@@ -7,14 +7,13 @@ then
     exit 1
 fi
 
-ACTIVE=$(nmcli con show --active | grep "$VPN")
+sudo systemctl status wg-quick@${VPN} 1>/dev/null
 
-if [ -z "$ACTIVE" ]
-then
-    notify-send -t 5 "VPN Toggle" "Activated $VPN"
+if [[ $? -ne 0 ]]; then
+    notify-send -t 5000 "VPN Toggle" "🟢 Activated Wireguard $VPN"
     sudo systemctl start wg-quick@client
 else
-    notify-send -t 5 "VPN Toggle" "Deactivated $VPN"
+    notify-send -t 5000 "VPN Toggle" "🛑 Deactivated Wireguard $VPN"
     sudo systemctl stop wg-quick@client
 fi
 

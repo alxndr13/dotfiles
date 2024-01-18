@@ -138,6 +138,9 @@ alias n='nnn'
 alias cal='cal -w -n 3 -m'
 alias kt='kitty --detach'
 
+alias d="cd /home/hucka/Dokumente/nvim_zettelkasten/ && nvim /home/hucka/Dokumente/nvim_zettelkasten/$(date "+%Y-%m-%d").md; cd -"
+
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __git_files () {
     _wanted files expl 'local files' _files
