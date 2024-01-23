@@ -1,0 +1,3 @@
+dobackup() {
+  /home/hucka/Dokumente/backup.sh
+}

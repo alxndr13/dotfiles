@@ -10,9 +10,11 @@ source '/usr/share/zsh-antidote/antidote.zsh'
 
 antidote load
 
-export PATH=$PATH:/home/ahuck/go/bin
+export PATH=$PATH:/home/hucka/go/bin
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+export FPATH=$FPATH:/home/hucka/.zsh_autoload/
 
 # Shift Tab to accept autosuggestion
 bindkey '^[[Z' autosuggest-accept
@@ -69,17 +71,25 @@ alias kt='kitty --detach'
 
 alias d="cd /home/hucka/Dokumente/nvim_zettelkasten/ && nvim /home/hucka/Dokumente/nvim_zettelkasten/$(date "+%Y-%m-%d").md; cd -"
 
+# Backup Aliases
+autoload dobackup
+autoload backuplist
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __git_files () {
     _wanted files expl 'local files' _files
 }
 
+# Shift Tab to accept autosuggestion
+bindkey '^[[Z' autosuggest-accept
+# CTRL+ arrow keys for word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[." insert-last-word
+
 ## direnv
 _evalcache direnv hook zsh
 ## zoxide
 _evalcache zoxide init zsh
-
-
 
 _evalcache starship init zsh

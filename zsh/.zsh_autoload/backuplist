@@ -1,0 +1,3 @@
+backuplist() {
+  restic --password-command "echo $(op read op://Personal/STRATO\ HiDrive/Restic\ Backup\ PW)" -r sftp:u384774@u384774.your-storagebox.de:/backup snapshots
+}
