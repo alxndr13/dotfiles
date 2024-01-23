@@ -73,7 +73,7 @@ alias d="cd /home/hucka/Dokumente/nvim_zettelkasten/ && nvim /home/hucka/Dokumen
 
 # Backup Aliases
 autoload dobackup
-autoload backuplist
+autoload listbackup
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __git_files () {
